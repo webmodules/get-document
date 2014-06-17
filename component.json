@@ -1,7 +1,7 @@
 {
   "name": "get-document",
   "repo": "component/get-document",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Returns the `document` object from a DOM object",
   "keywords": [
     "dom",
