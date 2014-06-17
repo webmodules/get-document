@@ -32,5 +32,16 @@ function getDocument(node) {
 
   } else if (node.parentNode) {
     return getDocument(node.parentNode);
+
+  // Range support
+  } else if (node.commonAncestorContainer) {
+    return getDocument(node.commonAncestorContainer);
+
+  } else if (node.startContainer) {
+    return getDocument(node.startContainer);
+
+  // Selection support
+  } else if (node.baseNode) {
+    return getDocument(node.baseNode);
   }
 }
