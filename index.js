@@ -27,7 +27,7 @@ function getDocument(node) {
     return node.ownerDocument;
 
   } else if (typeof node.document != 'undefined' &&
-      node.ownerDocument.nodeType === DOCUMENT_NODE) {
+      node.document.nodeType === DOCUMENT_NODE) {
     return node.document;
 
   } else if (node.parentNode) {
