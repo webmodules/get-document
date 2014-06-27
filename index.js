@@ -9,6 +9,18 @@ module.exports = getDocument;
 var DOCUMENT_NODE = 9;
 
 /**
+ * Returns `true` if `w` is a Document object, or `false` otherwise.
+ *
+ * @param {?} d - Document object, maybe
+ * @return {Boolean}
+ * @private
+ */
+
+function isDocument (d) {
+  return d && d.nodeType === DOCUMENT_NODE;
+}
+
+/**
  * Returns the `document` object associated with the given `node`, which may be
  * a DOM element, the Window object, a Selection, a Range. Basically any DOM
  * object that references the Document in some way, this function will find it.
@@ -19,15 +31,13 @@ var DOCUMENT_NODE = 9;
  */
 
 function getDocument(node) {
-  if (node.nodeType === DOCUMENT_NODE) {
+  if (isDocument(node)) {
     return node;
 
-  } else if (typeof node.ownerDocument != 'undefined' &&
-      node.ownerDocument.nodeType === DOCUMENT_NODE) {
+  } else if (isDocument(node.ownerDocument)) {
     return node.ownerDocument;
 
-  } else if (typeof node.document != 'undefined' &&
-      node.document.nodeType === DOCUMENT_NODE) {
+  } else if (isDocument(node.document)) {
     return node.document;
 
   } else if (node.parentNode) {
