@@ -1,4 +1,11 @@
 
+0.1.2 / 2014-07-28
+==================
+
+ * test: add `<iframe>` test
+ * test: add mocha tests
+ * index: DRY the logic a bit
+
 0.1.1 / 2014-06-27
 ==================
 
