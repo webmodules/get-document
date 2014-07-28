@@ -56,4 +56,22 @@ describe('get-document', function () {
     sel.removeAllRanges();
   });
 
+  it('should work with the child node of an <iframe> element', function () {
+    var iframe = document.createElement('iframe');
+    document.body.appendChild(iframe);
+
+    iframe.contentDocument.write('<body><b>hello world</b></body>');
+
+    // test the <body>
+    var doc = getDocument(iframe.contentDocument.body);
+    assert(doc === iframe.contentDocument);
+
+    // test the <b> node
+    var doc = getDocument(iframe.contentDocument.firstChild);
+    assert(doc === iframe.contentDocument);
+
+    // clean up
+    document.body.removeChild(iframe);
+  });
+
 });
