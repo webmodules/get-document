@@ -62,12 +62,20 @@ describe('get-document', function () {
 
     iframe.contentDocument.write('<body><b>hello world</b></body>');
 
+    // test iframe contentWindow
+    var doc = getDocument(iframe.contentWindow);
+    assert(doc === iframe.contentDocument);
+
+    // test iframe contentDocument
+    doc = getDocument(iframe.contentDocument);
+    assert(doc === iframe.contentDocument);
+
     // test the <body>
-    var doc = getDocument(iframe.contentDocument.body);
+    doc = getDocument(iframe.contentDocument.body);
     assert(doc === iframe.contentDocument);
 
     // test the <b> node
-    var doc = getDocument(iframe.contentDocument.firstChild);
+    doc = getDocument(iframe.contentDocument.body.firstChild);
     assert(doc === iframe.contentDocument);
 
     // clean up
