@@ -34,27 +34,33 @@ describe('get-document', function () {
     assert(doc === document);
   });
 
-  it('should work with a Range instance', function () {
-    var doc = getDocument(document.createRange());
-    assert(doc === document);
-  });
+  // skip on IE <= 8
+  if ('function' === typeof document.createRange) {
+    it('should work with a Range instance', function () {
+      var doc = getDocument(document.createRange());
+      assert(doc === document);
+    });
+  }
 
-  it('should work with a Selection instance', function () {
-    var sel = window.getSelection();
+  // skip on IE <= 8
+  if ('function' === typeof window.getSelection) {
+    it('should work with a Selection instance', function () {
+      var sel = window.getSelection();
 
-    // NOTE: a Selection needs to have some kind of selection on it
-    // (i.e. not `type: "None"`) in order for a Document to be found
-    var range = document.createRange();
-    range.selectNode(document.body);
-    sel.removeAllRanges();
-    sel.addRange(range);
+      // NOTE: a Selection needs to have some kind of selection on it
+      // (i.e. not `type: "None"`) in order for a Document to be found
+      var range = document.createRange();
+      range.selectNode(document.body);
+      sel.removeAllRanges();
+      sel.addRange(range);
 
-    var doc = getDocument(sel);
-    assert(doc === document);
+      var doc = getDocument(sel);
+      assert(doc === document);
 
-    // clean up
-    sel.removeAllRanges();
-  });
+      // clean up
+      sel.removeAllRanges();
+    });
+  }
 
   it('should work with the child node of an <iframe> element', function () {
     var iframe = document.createElement('iframe');
