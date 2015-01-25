@@ -51,7 +51,7 @@ function getDocument(node) {
     return getDocument(node.startContainer);
 
   // Selection support
-  } else if (node.baseNode) {
-    return getDocument(node.baseNode);
+  } else if (node.anchorNode) {
+    return getDocument(node.anchorNode);
   }
 }
