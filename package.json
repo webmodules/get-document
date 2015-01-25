@@ -1,6 +1,6 @@
 {
   "name": "get-document",
-  "version": "0.1.2",
+  "version": "1.0.0",
   "description": "Returns the `document` object from a DOM object",
   "scripts": {
     "test": "make test"
