@@ -70,23 +70,20 @@ describe('get-document', function () {
     var iframe = document.createElement('iframe');
     document.body.appendChild(iframe);
 
-    iframe.contentDocument.write('<body><b>hello world</b></body>');
-
-    // test iframe contentWindow
+    // `contentWindow` should be used for best browser compatability
     var doc = getDocument(iframe.contentWindow);
-    assert(doc === iframe.contentDocument);
+    assert.equal(9, doc.nodeType);
 
-    // test iframe contentDocument
-    doc = getDocument(iframe.contentDocument);
-    assert(doc === iframe.contentDocument);
+    doc.open();
+    doc.write('<body><b>hello world</b></body>');
+    doc.close();
 
     // test the <body>
-    doc = getDocument(iframe.contentDocument.body);
-    assert(doc === iframe.contentDocument);
+    var body = doc.body;
+    assert(doc === getDocument(body));
 
     // test the <b> node
-    doc = getDocument(iframe.contentDocument.body.firstChild);
-    assert(doc === iframe.contentDocument);
+    assert(doc === getDocument(body.firstChild));
 
     // clean up
     document.body.removeChild(iframe);
