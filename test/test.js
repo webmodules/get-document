@@ -70,7 +70,7 @@ describe('get-document', function () {
     var iframe = document.createElement('iframe');
     document.body.appendChild(iframe);
 
-    // `contentWindow` should be used for best browser compatability
+    // `contentWindow` should be used for best browser compatibility
     var doc = getDocument(iframe.contentWindow);
     assert.equal(9, doc.nodeType);
 
