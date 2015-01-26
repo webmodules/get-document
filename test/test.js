@@ -53,6 +53,7 @@ describe('get-document', function () {
       range.selectNode(document.body);
       sel.removeAllRanges();
       sel.addRange(range);
+      assert.equal(1, sel.rangeCount);
 
       var doc = getDocument(sel);
       assert(doc === document);
