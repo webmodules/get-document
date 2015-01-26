@@ -45,12 +45,15 @@ describe('get-document', function () {
   // skip on IE <= 8
   if ('function' === typeof window.getSelection) {
     it('should work with a Selection instance', function () {
-      var sel = window.getSelection();
-
       // NOTE: a Selection needs to have some kind of selection on it
       // (i.e. not `type: "None"`) in order for a Document to be found
       var range = document.createRange();
-      range.selectNode(document.body);
+      var t = document.createTextNode('t');
+      document.body.appendChild(t);
+      range.setStart(t, 0);
+      range.setEnd(t, t.nodeValue.length);
+
+      var sel = window.getSelection();
       sel.removeAllRanges();
       sel.addRange(range);
       assert.equal(1, sel.rangeCount);
