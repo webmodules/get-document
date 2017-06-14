@@ -2,6 +2,7 @@
   "name": "get-document",
   "version": "1.0.0",
   "description": "Returns the `document` object from a DOM object",
+  "license": "MIT",
   "scripts": {
     "test": "make test"
   },
